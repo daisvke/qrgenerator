@@ -30,6 +30,8 @@ sudo apt install libpng-dev
 <img src="screenshots/example-linux.png" width="500" />
 
 ### Termux
-<img src="screenshots/example-termux1.png" width="300"  />
-<img src="screenshots/example-termux2.png" width="300" />
+<p>
+	<img src="screenshots/example-termux1.png" width="300"  />
+	<img src="screenshots/example-termux2.png" width="300" />
+</p>
 <img src="screenshots/example-termux3.png" width="300" />
