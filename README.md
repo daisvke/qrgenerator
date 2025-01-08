@@ -7,8 +7,11 @@ command line, then:<br />
  - It prints the QR code on the terminal.
  - It saves the QR code as a PNG file.
 <br /><br />
-You can verify the generated code with:<br />
- `zbarimg qrcode.png`
+```
+// You can verify the generated code with:
+sudo apt install zbar-tools
+zbarimg qrcode.png
+```
 
 
 ## Requirement
@@ -16,7 +19,7 @@ You can verify the generated code with:<br />
 Used for producing QRcodes.
 ```
 sudo apt install libqrencode-dev
-// Or, on Termux
+// Or, on Termux (Android)
 pkg install libqrencode
 ```
 
