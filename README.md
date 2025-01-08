@@ -10,5 +10,26 @@ command line, then:<br />
 You can verify the generated code with:<br />
  `zbarimg qrcode.png`
 
- ## Screenshot
- <img src="example.png" />
+
+## Requirement
+* Qrencode<br />
+Used for producing QRcodes.
+```
+sudo apt install libqrencode-dev
+```
+
+* PNG Library
+Used for producing QRcodes.
+```
+sudo apt install libpng-dev
+```
+
+
+## Screenshot
+### Linux
+<img src="screenshots/example-linux.png" width="500" />
+
+### Termux
+<img src="screenshots/example-termux1.png" width="500"  />
+<img src="screenshots/example-termux2.png" width="500" />
+<img src="screenshots/example-termux3.png" width="500" />
