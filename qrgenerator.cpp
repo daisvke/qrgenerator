@@ -2,6 +2,7 @@
 
 /*
  * qrgenerator
+ * -----------
  * 
  * This program creates a QR code with the string given from the
  * command line, then:
@@ -9,12 +10,13 @@
  *  - It saves the QR code as a PNG file.
  *
  * You can verify the generated code with:
+ *  sudo apt install zbar-tools
  *  zbarimg qrcode.png
  */
 
 
 // Print the QR code on the terminal
-void printQRCode(QRcode *qrcode, int scale = 1) {
+void printQRCode(QRcode *qrcode, int scale = OTP_QRCODE_SCALE) {
     // Define Dimensions for the image
     int size = qrcode->width;
     int width = size * scale; // Factor to scale up each QR code module for better readability.
@@ -30,21 +32,39 @@ void printQRCode(QRcode *qrcode, int scale = 1) {
 
 	for (int y = 0; y < total_size; ++y) {
 		for (int x = 0; x < total_size; ++x) {
+			// Check if the unit is a margin
 			if (x < margin || x >= total_size - margin ||
 				y < margin || y >= total_size - margin)
 			{
 				std::cout << "██"; // White border
 			} else {
-            	// Determine if the pixel is within the QR code area.
+				/* If the unit is a module (black or white square dot):
+				 *
+				 * To check whether the current module is black or white,
+				 * we need to get the corresponding module in the original
+				 * unscaled qrcode.
+				 * To get those coordinates we need to remove the applied 
+				 * margin and scale.
+				 */
 				int module_x = (x - margin) / scale;
 				int module_y = (y - margin) / scale;
 
-				bool isModule = (module_x >= 0 && module_x < size &&
-								 module_y >= 0 && module_y < size &&
-								 (qrcode->data[module_y * size + module_x] & 0x01));
+				bool isBlackModule = (
+									// Check if the coordinates are within the QR code width
+									module_x >= 0 && module_x < size &&
+								 	module_y >= 0 && module_y < size &&
+									/* 
+									 * The QR code is stored as an unsigned char array.
+                                     * Thus, in order to get the module from the coordinates we do:
+                                     *  module = qrcode[y * size + x]
+                                     * 
+                                     * Furthermore, a value of module = 0x00 corresponds to a white dot
+                                     * and 0x01 to a black one.
+									 */
+								 	(qrcode->data[module_y * size + module_x] & 0x01));
 
-            	// Print the pixel as an ASCII square.
-				isModule ? std::cout << "  " : std::cout << "██";
+            	// Print the module as a black or white ASCII square.
+				isBlackModule ? std::cout << "  " : std::cout << "██";
 			}
 		}
 		std::cout << std::endl;
@@ -55,7 +75,8 @@ void printQRCode(QRcode *qrcode, int scale = 1) {
  * The generated output file should have a size of:
  *  (QR_width×scale+2×margin)×(QR_width×scale+2×margin).
  */
-void saveQRCodeAsPNG(QRcode *qrcode, const char *filename, int scale = OTP_QRCODE_SCALE) {
+void saveQRCodeAsPNG(
+	QRcode *qrcode, const char *filename, int scale = OTP_QRCODE_SCALE) {
     // Define Dimensions for the image
     int size = qrcode->width;
     int png_width = size * scale; // Factor to scale up each QR code module for better readability.

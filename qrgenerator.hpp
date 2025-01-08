@@ -11,7 +11,7 @@
 # include <cstdlib>
 
 # define OTP_QRCODE_FILE	"qrcode"	// Name of the PNG outfile for the QR code
-# define OTP_QRCODE_SCALE	5			// The scale of the QR code's PNG image (if too
+# define OTP_QRCODE_SCALE	1			// The scale of the QR code's PNG image (if too
 										// small it will be difficult to read it)
 
 void printQRCode(QRcode *qrcode, int scale);

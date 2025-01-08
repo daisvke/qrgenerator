@@ -15,7 +15,6 @@ KEY_QRCODE_FILE		=	qrcode.png
 # Source & Header Files
 # ==========================
 
-# 'core' folder is shared with GUI
 INCS		=	$(wildcard *.hpp)
 SRCS		=	$(wildcard *.cpp)
 
