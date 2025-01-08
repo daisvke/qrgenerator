@@ -33,7 +33,7 @@ void printQRCode(QRcode *qrcode, int scale = 1) {
 			if (x < margin || x >= total_size - margin ||
 				y < margin || y >= total_size - margin)
 			{
-				std::cout << "█"; // White border
+				std::cout << "██"; // White border
 			} else {
             	// Determine if the pixel is within the QR code area.
 				int module_x = (x - margin) / scale;
@@ -44,7 +44,7 @@ void printQRCode(QRcode *qrcode, int scale = 1) {
 								 (qrcode->data[module_y * size + module_x] & 0x01));
 
             	// Print the pixel as an ASCII square.
-				isModule ? std::cout << " " : std::cout << "█";
+				isModule ? std::cout << "  " : std::cout << "██";
 			}
 		}
 		std::cout << std::endl;
