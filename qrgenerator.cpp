@@ -7,6 +7,9 @@
  * command line, then:
  *  - It prints the QR code on the terminal.
  *  - It saves the QR code as a PNG file.
+ *
+ * You can verify the generated code with:
+ *  zbarimg qrcode.png
  */
 
 
