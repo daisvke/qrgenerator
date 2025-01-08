@@ -25,7 +25,7 @@ sudo apt install libpng-dev
 ```
 
 
-## Screenshot
+## Screenshots
 ### Linux
 <img src="screenshots/example-linux.png" width="500" />
 
