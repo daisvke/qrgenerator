@@ -34,4 +34,4 @@ sudo apt install libpng-dev
 	<img src="screenshots/example-termux1.png" width="400"  />
 	<img src="screenshots/example-termux2.png" width="400" />
 </p>
-<img src="screenshots/example-termux3.png" width="300" />
+<img src="screenshots/example-termux3.png" width="400" />
