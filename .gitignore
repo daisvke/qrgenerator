@@ -1,6 +1,6 @@
 # Temp files
 .*.sw?
-*.png
+qrcode.png
 
 # Prerequisites
 *.d
