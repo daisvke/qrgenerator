@@ -24,6 +24,16 @@ void	generateQRcodePNGFromSecret(const std::string secret, bool verbose);
 
 // Exceptions
 
+class QRCodeGenerationException: public std::exception
+{
+public:
+	QRCodeGenerationException() throw() {}
+	const char	*what() const throw() {
+			return "Failed to generate the QR code.";
+	}
+	~QRCodeGenerationException() throw() {}
+};
+
 class OpenFileException : public std::exception
 {
 public:

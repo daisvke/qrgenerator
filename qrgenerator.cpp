@@ -1,5 +1,15 @@
 #include "qrgenerator.hpp"
 
+/*
+ * qrgenerator
+ * 
+ * This program creates a QR code with the string given from the
+ * command line, then:
+ *  - It prints the QR code on the terminal.
+ *  - It saves the QR code as a PNG file.
+ */
+
+
 // Print the QR code on the terminal
 void printQRCode(QRcode *qrcode, int scale = 1) {
     // Define Dimensions for the image
@@ -41,8 +51,6 @@ void printQRCode(QRcode *qrcode, int scale = 1) {
 /*
  * The generated output file should have a size of:
  *  (QR_width×scale+2×margin)×(QR_width×scale+2×margin).
- * For a scale of 10 and margin of 4 modules,
- * it will be sufficiently large and compatible with most QR code scanners.
  */
 void saveQRCodeAsPNG(QRcode *qrcode, const char *filename, int scale = OTP_QRCODE_SCALE) {
     // Define Dimensions for the image
@@ -145,13 +153,17 @@ void saveQRCodeAsPNG(QRcode *qrcode, const char *filename, int scale = OTP_QRCOD
     fclose(fp); // Close the file
 }
 
-int main() {
-bool verbose=true; std::string secret = "abcd";
-	if (verbose)
-		std::cout << " Generating QR code..." << std::endl;
+int main(int argc, char *argv[]) {
+	if (argc < 2 || !argv[1][0]) {
+		std::cerr << "Missing argument." << std::endl;
+		exit(1);
+	}
+
+	std::string	inputString = argv[1];
+	
     try
     { 
-        QRcode *qrcode = QRcode_encodeString(secret.c_str(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
+        QRcode *qrcode = QRcode_encodeString(inputString.c_str(), 0, QR_ECLEVEL_L, QR_MODE_8, 1);
 
         if (qrcode) {
             std::string filetype = ".png";
@@ -159,12 +171,9 @@ bool verbose=true; std::string secret = "abcd";
 
 			printQRCode(qrcode); // Print the QR code on the terminal
             saveQRCodeAsPNG(qrcode, filename.c_str()); // Save the QR code as PNG
-			if (verbose)
-				std::cout << " Saved QR code as PNG file: '"
-					<< filename << "'." << std::endl;
             QRcode_free(qrcode);
         } else {
-            throw OpenFileException();
+            throw QRCodeGenerationException();
         }
     }
     catch (std::exception &e)
@@ -172,4 +181,6 @@ bool verbose=true; std::string secret = "abcd";
         std::cerr << e.what() << std::endl;
         exit(1);
     }
+
+	return 0;
 }
