@@ -4,7 +4,7 @@
 
 NAME				=	qrgenerator
 CXX					=	clang++
-CXXFLAGS			=	-std=c++11 -Wall -Wextra -Werror
+CXXFLAGS			=	-std=c++11 -Wall -Wextra -Werror -g
 LDFLAGS				=	-lqrencode -lpng
 RM					=	rm -rf
 

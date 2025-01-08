@@ -6,16 +6,18 @@
 # include <fstream>
 # include <sstream>
 # include <string>
+# include <cctype>
 # include <png.h>
 # include <cstdio>
 # include <cstdlib>
 
 # define OTP_QRCODE_FILE	"qrcode"	// Name of the PNG outfile for the QR code
-# define OTP_QRCODE_SCALE	1			// The scale of the QR code's PNG image (if too
+# define OTP_QRCODE_SCALE_TERM	1		// The scale of the printed QR code on the terminal
+# define OTP_QRCODE_SCALE_PNG	10		// The scale of the QR code's PNG image (if too
 										// small it will be difficult to read it)
 
-void printQRCode(QRcode *qrcode, int scale);
-void saveQRCodeAsPNG(QRcode *qrcode, const char *filename, int scale);
+void printQRCode(const QRcode* &qrcode, const int scale);
+void saveQRCodeAsPNG(QRcode* &qrcode, const char* filename, const int scale);
 
 void	generateQRCode(const std::string& totpURI, const std::string& filename);
 QRcode *generateQRCodeFromURI(const std::string secret, bool verbose);
