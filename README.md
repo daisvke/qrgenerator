@@ -11,4 +11,4 @@ You can verify the generated code with:<br />
  `zbarimg qrcode.png`
 
  ## Screenshot
- <img href="example.png" />
+ <img src="example.png" />
