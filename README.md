@@ -36,7 +36,7 @@ make
 ### Linux
 <img src="screenshots/example-linux.png" width="500" />
 
-### Termux
+### Termux (Android)
 <p>
 	<img src="screenshots/example-termux1.png" width="400"  />
 	<img src="screenshots/example-termux2.png" width="400" />
