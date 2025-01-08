@@ -86,7 +86,7 @@ void processQRCodeRows(
 }
 
 // Print the QR code on the terminal
-void printQRCode(QRcode* &qrcode, const int scale = OTP_QRCODE_SCALE_TERM) {
+void printQRCode(QRcode* &qrcode, const int scale) {
     // Define Dimensions for the image
     int size = qrcode->width;
     int width = size * scale; // Factor to scale up each QR code module for better readability.
@@ -139,7 +139,7 @@ png_infop	init_png(FILE* &fp, png_structp &png, int size)
  *  (QR_width×scale+2×margin)×(QR_width×scale+2×margin).
  */
 void saveQRCodeAsPNG(
-	QRcode* &qrcode, const char* filename, const int scale = OTP_QRCODE_SCALE_PNG) {
+	QRcode* &qrcode, const char* filename, const int scale) {
     // Define Dimensions for the image
     int size = qrcode->width;
     int png_width = size * scale; // Factor to scale up each QR code module for better readability.
@@ -179,38 +179,4 @@ void saveQRCodeAsPNG(
     png_write_end(png, nullptr); // Finalize the PNG file
     png_destroy_write_struct(&png, &info); // Clean up libpng structures
     fclose(fp); // Close the file
-}
-
-int main(int argc, char *argv[]) {
-	if (argc < 2 || !argv[1][0]) {
-		std::cerr << "Missing argument." << std::endl;
-		exit(1);
-	}
-
-	std::string	inputString = argv[1];
-	
-    try
-    { 
-        QRcode *qrcode = QRcode_encodeString(
-				inputString.c_str(), 0, QR_ECLEVEL_L, QR_MODE_8, 1
-			);
-
-        if (qrcode) {
-            std::string filetype = ".png";
-            std::string filename = OTP_QRCODE_FILE + filetype;
-
-			printQRCode(qrcode); // Print the QR code on the terminal
-            saveQRCodeAsPNG(qrcode, filename.c_str()); // Save the QR code as PNG
-            QRcode_free(qrcode);
-        } else {
-            throw QRCodeGenerationException();
-        }
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-        exit(1);
-    }
-
-	return 0;
 }

@@ -16,9 +16,8 @@
 # define OTP_QRCODE_SCALE_PNG	10		// The scale of the QR code's PNG image (if too
 										// small it will be difficult to read it)
 
-void printQRCode(const QRcode* &qrcode, const int scale);
-void saveQRCodeAsPNG(QRcode* &qrcode, const char* filename, const int scale);
-
+void	printQRCode(QRcode* &qrcode, const int scale = OTP_QRCODE_SCALE_TERM);
+void	saveQRCodeAsPNG(QRcode* &qrcode, const char* filename, const int scale = OTP_QRCODE_SCALE_PNG);
 void	generateQRCode(const std::string& totpURI, const std::string& filename);
 QRcode *generateQRCodeFromURI(const std::string secret, bool verbose);
 void	generateQRcodePNGFromSecret(const std::string secret, bool verbose);
