@@ -24,6 +24,13 @@ Used for producing QRcodes.
 sudo apt install libpng-dev
 ```
 
+## Commands
+```
+// Run
+make
+./qrencode <string to convert>
+```
+
 
 ## Screenshots
 ### Linux
