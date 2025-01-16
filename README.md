@@ -2,47 +2,47 @@
 
 ## **Description**
 
-This program creates a QR code (Quick Response code) with the string given from the
-command line, then:<br />
- - It prints the QR code on the terminal.
- - It saves the QR code as a PNG file.
-<br /><br />
-```
+This program creates a QR code (Quick Response code) with the string provided from the command line, then:
+- It prints the QR code on the terminal.
+- It saves the QR code as a PNG file.
+
+```bash
 // You can verify the generated code with:
 sudo apt install zbar-tools
 zbarimg qrcode.png
 ```
 
+## **Requirements**
 
-## **Requirement**
+### **1. Qrencode**  
+`libqrencode` is a C library designed for generating QR codes. It is widely used in various applications to create QR codes that can store information such as URLs, text, contact information, and more. The library is efficient, lightweight, and provides a straightforward API for developers to integrate QR code generation into their applications.
 
-### **1. Qrencode**<br />
-libqrencode is a C library designed for generating QR codes. It is widely used in various applications to create QR codes that can store information such as URLs, text, contact information, and more. The library is efficient, lightweight, and provides a straightforward API for developers to integrate QR code generation into their applications.
-```
+```bash
 sudo apt install libqrencode-dev
 // Or, on Termux (Android)
 pkg install libqrencode
 ```
+
 ---
 
-### **2. PNG Library**
+### **2. PNG Library**  
 Used for producing image files in PNG format that contain the QR codes.
-```
+
+```bash
 sudo apt install libpng-dev
 // Or, on Termux
 pkg install libpng
 ```
 
-
 ## **Commands**
-```
+```bash
 // Run
 make
-./qrencode <string to convert>
+./qrgenerator <string_to_convert>
 ```
 
-
 ## **Screenshots**
+
 ### **Linux**
 <img src="screenshots/example-linux.png" width="500" />
 
@@ -50,19 +50,19 @@ make
 
 ### **Termux (Android)**
 <p>
-	<img src="screenshots/example-termux1.png" width="400"  />
-	<img src="screenshots/example-termux2.png" width="400" />
+    <img src="screenshots/example-termux1.png" width="400" />
+    <img src="screenshots/example-termux2.png" width="400" />
 </p>
 <img src="screenshots/example-termux3.png" width="400" />
 
-
-## **Notes on QR code generation**
+## **Notes on QR Code Generation**
 
 QR code generation involves encoding data into a 2D matrix of black and white squares. Each square, known as a **module**, represents either a binary 0 (white) or 1 (black). The pattern and arrangement of these modules are designed to allow accurate decoding, even with some level of distortion or damage. Here are the main characteristics of QR code generation:
 
 ---
 
 ### 1. **Structure of a QR Code**
+
 A QR code consists of several key components, each serving a specific purpose:
 
 #### **Finder Patterns (Orientation Squares):**
@@ -88,6 +88,7 @@ A QR code consists of several key components, each serving a specific purpose:
 ---
 
 ### 2. **Encoding Data into Modules**
+
 - **Modules:** The smallest square units in the QR code, representing data or functional components. Each module is either black (binary `1`) or white (binary `0`).
 - **Data Encoding:**
   - The data is encoded using binary representations.
