@@ -2,15 +2,27 @@
 
 ## **Description**
 
-This program creates a QR code (Quick Response code) with the string provided from the command line, then:
-- It prints the QR code on the terminal.
-- It saves the QR code as a PNG file.
+This program creates a QR code (Quick Response code) with the string provided from the command line, then:  
+- It prints the QR code on the terminal.  
+- It saves the QR code as a PNG file.  
+
+### **vCard Generation**
+Additionally, the repository includes a sample vCard format. You can edit the vCard file and use it as input to generate a QR code that will be recognized as contact information, making it easy to add to a phone.
+
+```bash
+// Example usage with vCard:
+./qrgenerator "$(cat vcard-example.txt)"
+```
+
+The QR code generated using the vCard will contain the contact information and can be scanned by a phone to save the contact directly.
 
 ```bash
 // You can verify the generated code with:
 sudo apt install zbar-tools
 zbarimg qrcode.png
 ```
+
+---
 
 ## **Requirements**
 
@@ -34,12 +46,16 @@ sudo apt install libpng-dev
 pkg install libpng
 ```
 
+---
+
 ## **Commands**
 ```bash
 // Run
 make
 ./qrgenerator <string_to_convert>
 ```
+
+---
 
 ## **Screenshots**
 
@@ -54,6 +70,8 @@ make
     <img src="screenshots/example-termux2.png" width="400" />
 </p>
 <img src="screenshots/example-termux3.png" width="400" />
+
+---
 
 ## **Notes on QR Code Generation**
 
@@ -89,7 +107,7 @@ A QR code consists of several key components, each serving a specific purpose:
 
 ### 2. **Encoding Data into Modules**
 
-- **Modules:** The smallest square units in the QR code, representing data or functional components. Each module is either black (binary `1`) or white (binary `0`).
+- **Modules:** The smallest square units in the QR code, representing data or functional components. Each module is either black (binary 1) or white (binary 0).
 - **Data Encoding:**
   - The data is encoded using binary representations.
   - Error correction codes (e.g., Reed-Solomon codes) are added to ensure the QR code can be decoded even if part of it is damaged.
@@ -114,8 +132,8 @@ QR codes use **error correction** to restore data if part of the code is damaged
 
 ### 5. **Module Values:**
 - Each module has a specific value depending on its function:
-  - **Black Module:** Represents a binary `1`.
-  - **White Module:** Represents a binary `0`.
+  - **Black Module:** Represents a binary 1.
+  - **White Module:** Represents a binary 0.
 
 ---
 

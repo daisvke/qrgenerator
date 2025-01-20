@@ -1,3 +1,5 @@
+private/
+
 # Temp files
 .*.sw?
 qrcode.png
